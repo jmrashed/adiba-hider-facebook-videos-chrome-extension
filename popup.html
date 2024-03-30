@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide Facebook Reels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hide Facebook Reels</h1>
+    <p>This extension hides Facebook Reels from your feed.</p>
+    <button id="toggleButton" class="button">Toggle Extension</button>
+
+    <script>
+        // Function to toggle the extension on/off
+        function toggleExtension() {
+            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                // Send a message to the content script to toggle the extension
+                chrome.tabs.sendMessage(tabs[0].id, { action: 'toggleExtension' });
+            });
+        }
+
+        // Add event listener to the toggle button
+        document.getElementById('toggleButton').addEventListener('click', toggleExtension);
+    </script>
+</body>
+
+</html>
